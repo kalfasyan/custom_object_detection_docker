@@ -96,38 +96,11 @@ RUN mkdir -p workspace/training_demo/annotations && \
     mv custom_data/images_and_annotations/* workspace/training_demo/images/ && \
     python scripts/preprocessing/random_copy.py
 
-# After this, there should be 2 new files under the training_demo/annotations folder, named train_labels.csv and test_labels.csv, respectively.
-RUN python scripts/preprocessing/xml_to_csv.py -i workspace/training_demo/images/train -o workspace/training_demo/annotations/train_labels.csv && \
-    python scripts/preprocessing/xml_to_csv.py -i workspace/training_demo/images/test -o workspace/training_demo/annotations/test_labels.csv
-
-# Creating the train and test records from csvs.
-#RUN python scripts/preprocessing/generate_tfrecord.py --label=insects --csv_input=workspace/training_demo/annotations/train_labels.csv --output_path=./workspace/training_demo/annotations/train.record --img_path=workspace/training_demo/images/train && \
-#    python scripts/preprocessing/generate_tfrecord.py --label=insects --csv_input=workspace/training_demo/annotations/test_labels.csv --output_path=./workspace/training_demo/annotations/test.record --img_path=workspace/training_demo/images/test
-
-# Pets example dataset
-#RUN mkdir -p /tmp/pet_faces_tfrecord/ && \
-#    cd /tmp/pet_faces_tfrecord && \
-#    curl "http://download.tensorflow.org/models/object_detection/#pet_faces_tfrecord.tar.gz" | tar xzf -
-
-# Pretrained model
-# This one doesn't need its own directory, since it comes in a folder.
-#RUN cd /tmp && \
-#    curl -O "http://download.tensorflow.org/models/object_detection/#ssd_mobilenet_v1_0.75_depth_300x300_coco14_sync_2018_07_03.tar.gz" && \
-#    tar xzf ssd_mobilenet_v1_0.75_depth_300x300_coco14_sync_2018_07_03.tar.gz && \
-#    rm ssd_mobilenet_v1_0.75_depth_300x300_coco14_sync_2018_07_03.tar.gz
-
-# Trained TensorFlow Lite model. This should get replaced by one generated from
-# export_tflite_ssd_graph.py when that command is called.
-#RUN cd /tmp && \
-#    curl -L -o tflite.zip \
-#    https://storage.googleapis.com/download.tensorflow.org/models/tflite/#frozengraphs_ssd_mobilenet_v1_0.75_quant_pets_2018_06_29.zip && \
-#    unzip tflite.zip -d tflite && \
-#    rm tflite.zip
-
-
+WORKDIR /home/yannis/tensorflow/workspace/training_demo/
+CMD bash main_script.sh
 
 EXPOSE 8008
-EXPOSE 8080
-EXPOSE 8888
+#EXPOSE 8080
+#EXPOSE 8888
 
 # #CMD bash setup_script.sh; bash run_script.sh
