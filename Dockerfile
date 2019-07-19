@@ -96,11 +96,8 @@ RUN mkdir -p workspace/training_demo/annotations && \
     mv custom_data/images_and_annotations/* workspace/training_demo/images/ && \
     python scripts/preprocessing/random_copy.py
 
-WORKDIR /home/yannis/tensorflow/workspace/training_demo/
-CMD bash main_script.sh
-
 EXPOSE 8008
-#EXPOSE 8080
-#EXPOSE 8888
 
-# #CMD bash setup_script.sh; bash run_script.sh
+WORKDIR /home/yannis/tensorflow/workspace/training_demo/
+
+ENTRYPOINT bash main_script.sh
