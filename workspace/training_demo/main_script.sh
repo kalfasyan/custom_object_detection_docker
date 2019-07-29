@@ -1,12 +1,12 @@
 echo 'Creating csv file for Train'
-python ../../scripts/preprocessing/xml_to_csv.py -i images/train -o annotations/train_labels.csv
+python /home/yannis/tensorflow/scripts/preprocessing/xml_to_csv.py -i images/train -o annotations/train_labels.csv
 echo 'Creating csv file for Test'
-python ../../scripts/preprocessing/xml_to_csv.py -i images/test -o annotations/test_labels.csv
+python /home/yannis/tensorflow/scripts/preprocessing/xml_to_csv.py -i images/test -o annotations/test_labels.csv
 echo 'Csv files created.'
 echo 'Creating tfrecord for Train'
-python ../../scripts/preprocessing/generate_tfrecord.py --label=insects --csv_input=annotations/train_labels.csv --output_path=annotations/train.record --img_path=images/train  
+python /home/yannis/tensorflow/scripts/preprocessing/generate_tfrecord.py --label=insects --csv_input=annotations/train_labels.csv --output_path=annotations/train.record --img_path=images/train  
 echo 'Creating tfrecord for Test'
-python ../../scripts/preprocessing/generate_tfrecord.py --label=insects --csv_input=annotations/test_labels.csv --output_path=annotations/test.record --img_path=images/test
+python /home/yannis/tensorflow/scripts/preprocessing/generate_tfrecord.py --label=insects --csv_input=annotations/test_labels.csv --output_path=annotations/test.record --img_path=images/test
 echo 'tfrecord files created.'
 
 echo 'Downloading pre-trained model, extracting, cleaning..'
