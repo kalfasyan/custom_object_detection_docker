@@ -93,8 +93,7 @@ RUN mkdir -p workspace/training_demo/annotations && \
     mkdir -p workspace/training_demo/images/train && \
     mkdir -p workspace/training_demo/pre-trained-model && \
     mkdir -p workspace/training_demo/training && \
-    mv custom_data/images_and_annotations/* workspace/training_demo/images/ && \
-    python scripts/preprocessing/random_copy.py
+    mv custom_data/images_and_annotations/* workspace/training_demo/images/
 
 EXPOSE 8008
 

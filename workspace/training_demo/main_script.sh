@@ -1,3 +1,7 @@
+echo 'Splitting in Train/Test'
+echo 'NOTE: This supposes your data are in workspace/training_demo/images/'
+python /home/yannis/tensorflow/scripts/preprocessing/random_copy.py
+echo 'Done.'
 echo 'Creating csv file for Train'
 python /home/yannis/tensorflow/scripts/preprocessing/xml_to_csv.py -i images/train -o annotations/train_labels.csv
 echo 'Creating csv file for Test'
