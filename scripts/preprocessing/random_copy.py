@@ -7,7 +7,7 @@ from shutil import move
 import pandas as pd
 import numpy as np
 
-inpath = '/home/yannis/tensorflow/workspace/training_demo/images/'
+inpath = '/opt/yannis/tensorflow/workspace/training_demo/images/'
 outpath_train = os.path.join(inpath, 'train')
 outpath_test = os.path.join(inpath, 'test')
 

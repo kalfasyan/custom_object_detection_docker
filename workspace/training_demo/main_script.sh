@@ -1,16 +1,16 @@
 echo 'Splitting in Train/Test'
 echo 'NOTE: This supposes your data are in workspace/training_demo/images/'
-python /home/yannis/tensorflow/scripts/preprocessing/random_copy.py
+python /opt/yannis/tensorflow/scripts/preprocessing/random_copy.py
 echo 'Done.'
 echo 'Creating csv file for Train'
-python /home/yannis/tensorflow/scripts/preprocessing/xml_to_csv.py -i images/train -o annotations/train_labels.csv
+python /opt/yannis/tensorflow/scripts/preprocessing/xml_to_csv.py -i images/train -o annotations/train_labels.csv
 echo 'Creating csv file for Test'
-python /home/yannis/tensorflow/scripts/preprocessing/xml_to_csv.py -i images/test -o annotations/test_labels.csv
+python /opt/yannis/tensorflow/scripts/preprocessing/xml_to_csv.py -i images/test -o annotations/test_labels.csv
 echo 'Csv files created.'
 echo 'Creating tfrecord for Train'
-python /home/yannis/tensorflow/scripts/preprocessing/generate_tfrecord.py --label=insects --csv_input=annotations/train_labels.csv --output_path=annotations/train.record --img_path=images/train  
+python /opt/yannis/tensorflow/scripts/preprocessing/generate_tfrecord.py --label=insects --csv_input=annotations/train_labels.csv --output_path=annotations/train.record --img_path=images/train  
 echo 'Creating tfrecord for Test'
-python /home/yannis/tensorflow/scripts/preprocessing/generate_tfrecord.py --label=insects --csv_input=annotations/test_labels.csv --output_path=annotations/test.record --img_path=images/test
+python /opt/yannis/tensorflow/scripts/preprocessing/generate_tfrecord.py --label=insects --csv_input=annotations/test_labels.csv --output_path=annotations/test.record --img_path=images/test
 echo 'tfrecord files created.'
 
 echo 'Downloading pre-trained model, extracting, cleaning..'

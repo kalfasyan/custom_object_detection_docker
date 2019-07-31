@@ -5,7 +5,7 @@ import os
 import xml.etree.ElementTree as ET 
 import glob
 #from natsort import natsorted
-DATA_DIR = '/home/yannis/tensorflow/workspace/training_demo/'
+DATA_DIR = '/opt/yannis/tensorflow/workspace/training_demo/'
 PATH_ANNT = os.path.join(DATA_DIR, 'images')
 PATH_IMGS = os.path.join(DATA_DIR, 'images')
 

@@ -46,15 +46,15 @@ RUN apt-get install -y protobuf-compiler && \
     pip install contextlib2 
 
 # Clone tensorflow models repo and moving it to custom dir
-RUN mkdir -p /home/yannis/tensorflow/ && \
+RUN mkdir -p /opt/yannis/tensorflow/ && \
     git clone --depth 1 https://github.com/tensorflow/models.git && \
-    mv models/ /home/yannis/tensorflow/models
+    mv models/ /opt/yannis/tensorflow/models
 
 # Install pycocoapi
 RUN git clone --depth 1 https://github.com/cocodataset/cocoapi.git && \
     cd cocoapi/PythonAPI && \
     make -j8 && \
-    cp -r pycocotools /home/yannis/tensorflow/models/research && \
+    cp -r pycocotools /opt/yannis/tensorflow/models/research && \
     cd ../../ && \
     rm -rf cocoapi
 
@@ -66,11 +66,11 @@ RUN curl -OL "https://github.com/google/protobuf/releases/download/v3.0.0/protoc
     rm -rf proto3 protoc-3.0.0-linux-x86_64.zip
 
 # Run protoc on the object detection repo
-RUN cd /home/yannis/tensorflow/models/research && \
+RUN cd /opt/yannis/tensorflow/models/research && \
     protoc object_detection/protos/*.proto --python_out=.
 
 # Set the PYTHONPATH to finish installing the API
-ENV PYTHONPATH $PYTHONPATH:/home/yannis/tensorflow/models/research:/home/yannis/tensorflow/models/research/slim
+ENV PYTHONPATH $PYTHONPATH:/opt/yannis/tensorflow/models/research:/opt/yannis/tensorflow/models/research/slim
 
 # Installing dependencies for machine learning
 RUN  pip install natsort && \
@@ -84,7 +84,7 @@ RUN  pip install natsort && \
         pip install tensorflow-gpu==1.12.3
 
 # Switching working directory and copying all local files
-WORKDIR /home/yannis/tensorflow/
+WORKDIR /opt/yannis/tensorflow/
 COPY . .
 
 # Creating folder structure according to tensorflow's object detection api tutorial
@@ -97,6 +97,6 @@ RUN mkdir -p workspace/training_demo/annotations && \
 
 EXPOSE 8008
 
-WORKDIR /home/yannis/tensorflow/workspace/training_demo/
+WORKDIR /opt/yannis/tensorflow/workspace/training_demo/
 
 ENTRYPOINT bash main_script.sh
