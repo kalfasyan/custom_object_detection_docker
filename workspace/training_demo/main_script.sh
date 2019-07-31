@@ -14,9 +14,17 @@ python /home/yannis/tensorflow/scripts/preprocessing/generate_tfrecord.py --labe
 echo 'tfrecord files created.'
 
 echo 'Downloading pre-trained model, extracting, cleaning..'
-wget http://download.tensorflow.org/models/object_detection/ssd_mobilenet_v2_quantized_300x300_coco_2019_01_03.tar.gz && \
-tar xzvf ssd_mobilenet_v2_quantized_300x300_coco_2019_01_03.tar.gz -C pre-trained-model/
-rm ssd_mobilenet_v2_quantized_300x300_coco_2019_01_03.tar.gz
+# FASTER_RCNN_INCEPTION_V2_coco
+wget http://download.tensorflow.org/models/object_detection/faster_rcnn_inception_v2_coco_2018_01_28.tar.gz 
+tar xzvf faster_rcnn_inception_v2_coco_2018_01_28.tar.gz -C pre-trained-model/
+rm faster_rcnn_inception_v2_coco_2018_01_28.tar.gz
+
+# SSD_MOBILENET_V2_QUANTIZED_300x300_coco
+# wget http://download.tensorflow.org/models/object_detection/ssd_mobilenet_v2_quantized_300x300_coco_2019_01_03.tar.gz && \
+# tar xzvf ssd_mobilenet_v2_quantized_300x300_coco_2019_01_03.tar.gz -C pre-trained-model/
+# rm ssd_mobilenet_v2_quantized_300x300_coco_2019_01_03.tar.gz
+
 echo 'Done.'
 
-python train.py --logtostderr --train_dir=training/ --pipeline_config_path=training/ssd_mobilenet_v2_quantized_300x300_coco.config
+python train.py --logtostderr --train_dir=training/ --pipeline_config_path=training/faster_rcnn_inception_v2_coco.config
+#ssd_mobilenet_v2_quantized_300x300_coco.config
