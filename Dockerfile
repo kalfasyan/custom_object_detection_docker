@@ -1,8 +1,8 @@
 #FROM nvidia/cuda:10.1-cudnn7-runtime-ubuntu18.04
 FROM nvidia/cuda:9.0-cudnn7-runtime-ubuntu16.04
 
-ENV TZ=Europe/Brussels
-RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+# ENV TZ=Europe/Brussels
+# RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 RUN apt-get update && apt-get install -y --no-install-recommends software-properties-common
 RUN add-apt-repository ppa:jonathonf/python-3.6
@@ -81,22 +81,13 @@ RUN  pip install natsort && \
 	pip install scikit-image==0.14.2 && \
 	pip install scikit-learn==0.20.2 && \
 	pip install pandas==0.23.4 && \
-        pip install tensorflow-gpu==1.12.3
+    pip install tensorflow-gpu==1.12.3
 
 # Switching working directory and copying all local files
 WORKDIR /opt/yannis/tensorflow/
 COPY . .
 
-# Creating folder structure according to tensorflow's object detection api tutorial
-RUN mkdir -p workspace/training_demo/annotations && \
-    mkdir -p workspace/training_demo/images/test && \
-    mkdir -p workspace/training_demo/images/train && \
-    mkdir -p workspace/training_demo/pre-trained-model && \
-    mkdir -p workspace/training_demo/training && \
-    mv custom_data/images_and_annotations/* workspace/training_demo/images/
-
 EXPOSE 8008
+RUN mkdir -p /home/kalfasyan/projects/detection_files/
 
-WORKDIR /opt/yannis/tensorflow/workspace/training_demo/
-
-ENTRYPOINT bash main_script.sh
+ENTRYPOINT bash scripts/main_script.sh
