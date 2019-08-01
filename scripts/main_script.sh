@@ -1,4 +1,4 @@
-HOST_FILES=/home/kalfasyan/projects/detection_files
+HOST_FILES=/scratch/leuven/314/vsc31431/detection_files
 SCRIPTS=/opt/yannis/tensorflow/scripts
 
 echo 'Splitting in Train/Test'
