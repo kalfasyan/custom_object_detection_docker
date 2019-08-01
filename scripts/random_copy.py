@@ -19,6 +19,7 @@ parser.add_argument("-s",
                     "--splitPct",
                     help="Path to the folder where the input images and annotations are stored",
                     type=float)                    
+args = parser.parse_args()
 
 inpath = args.inputDir
 outpath_train = os.path.join(inpath, 'train')
