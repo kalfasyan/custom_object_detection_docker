@@ -88,6 +88,6 @@ WORKDIR /opt/yannis/tensorflow/
 COPY . .
 
 EXPOSE 8008
-RUN mkdir -p /scratch/leuven/314/vsc31431/detection_files/
+RUN mkdir -p PATH_TO_BE_CONFIGURED
 
 ENTRYPOINT bash scripts/main_script.sh
