@@ -25,6 +25,11 @@ inpath = args.inputDir
 outpath_train = os.path.join(inpath, 'train')
 outpath_test = os.path.join(inpath, 'test')
 
+if not os.path.exists(outpath_train):
+    os.makedirs(outpath_train)
+if not os.path.exists(outpath_test):
+    os.makedirs(outpath_test)
+
 def absoluteFilePaths(directory, ext='jpg'):
     for dirpath,_,filenames in os.walk(directory):
         for f in filenames:
